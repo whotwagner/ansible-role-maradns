@@ -11,6 +11,63 @@ This role installs and manages [MaraDNS](http://www.maradns.org/). It was develo
 
 None.
 
+## Role Variables
+
+For installing a Zoneserver, just set the following variable true:
+
+```
+maradns_zoneserver: False
+```
+
+It is possible to change the mararc-template:
+
+```
+maradns_mararctemplate: mararc.j2
+```
+
+To bind maradns on a specific address use:
+
+```
+maradns_bind_address: 127.0.0.1
+```
+
+Changing the loglevel:
+
+```
+maradns_verbose_level: 1
+```
+
+In order to allow zone-transfer from specific ip-adresses change:
+```
+maradns_zone_transfer_acl: False
+```
+
+To allow recursive-dns change this:
+
+```
+maradns_recursive_acl: False
+```
+
+MaraDNS supports different csv-formats:
+
+```
+maradns_csv_version: 2
+```
+The following default-values can be overwritten by maradns_zone-values:
+
+```
+maradns_default_refresh: 3600
+maradns_default_retry: 1800
+maradns_default_expire: 604800
+maradns_default_ttl: 600
+```
+
+See next section for a detailed example of maradns_zones...
+```
+maradns_zones: []
+```
+
+
 ## Configuration example
 
 ```
