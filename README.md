@@ -39,6 +39,10 @@ None.
           - { ip: 8.8.8.8 }
           - { domain: 'www', ip: 8.8.8.8 }
           - { domain: 'sip', ip: 6.6.6.6 }
+      # the following zone is disabled:
+      - name: alice.com
+        enabled: False
+
 ```
 This example produces the following csv2-file:
 
