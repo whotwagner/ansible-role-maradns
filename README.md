@@ -1,6 +1,6 @@
 # Ansible Role: maradns
 
-This role installs and manage [MaraDNS](http://www.maradns.org/). It was developed and tested on Debian Stretch.
+This role installs and manages [MaraDNS](http://www.maradns.org/). It was developed and tested on Debian Stretch.
 
 ## Requirements
 
