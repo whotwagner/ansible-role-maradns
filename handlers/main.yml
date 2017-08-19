@@ -1,0 +1,4 @@
+- name: maradns restart
+  service:
+    name: maradns
+    state: restarted

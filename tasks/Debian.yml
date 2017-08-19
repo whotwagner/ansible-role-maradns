@@ -1,0 +1,4 @@
+- name: Install Maradns
+  apt: name=maradns update_cache="yes" state=latest
+
+

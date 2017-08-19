@@ -1,0 +1,76 @@
+/origin {{ item.name }}.
+% SOA % {{ item.email }}. /serial {{ item.refresh | default(maradns_default_refresh)}} {{ item.retry | default(maradns_default_retry) }} {{item.expire | default(maradns_default_expire) }} {{ item.ttl | default(maradns_default_ttl) }} 
+
+{% if item.ns is defined %}
+{% for ns in item.ns %}
+{% if ns.name is defined %}
+{{ ns.name }}	NS	{{ ns.val }} 
+{% else %}
+%	NS	{{ ns.val }} 
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if item.mx is defined %}
+{% for mx in item.mx %}
+%	MX	{{mx.prio}} {{mx.rec}} 
+{% endfor %}
+{% endif %}
+
+{% if item.txt is defined %}
+{% for txt in item.txt %}
+{% if txt.name is defined %}
+{{ txt.name }}.%	TXT	'{{ txt.val }}' 
+{% else %}
+%	TXT	'{{ txt.val }}' 
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if item.spf is defined %}
+{% for spf in item.spf %}
+{% if spf.name is defined %}
+{{ spf.name }}.%	SPF	'{{ spf.val }}' 
+{% else %}
+%	SPF	'{{ spf.val }}' 
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+{% if item.a is defined %}
+{% for a in item.a %}
+{% if a.domain is defined %}
+{{a.domain}}.%	{{a.ip}} 
+{% else %}
+%	{{a.ip}} 
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if item.fqdn4 is defined %}
+{% for fqdn4 in item.fqdn4 %}
+{% if fqdn4.domain is defined %}
+{{fqdn4.domain}}.%	FQDN4	{{fqdn4.ip}} 
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if item.ptr is defined %}
+{% for ptr in item.ptr %}
+{% if ptr.domain is defined %}
+{{ptr.domain}}.%	PTR	{{ptr.ip}} 
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+{% if item.srv is defined %}
+{% for srv in item.srv %}
+{% if srv.name is defined %}
+{{ srv.name }}.%	SRV	{{ srv.val }} 
+{% else %}
+%	SRV	{{ srv.val }} 
+{% endif %}
+{% endfor %}
+{% endif %}

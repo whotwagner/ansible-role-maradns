@@ -1,0 +1,25 @@
+- include: Debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: Configure mararc
+  template:
+    src: "{{ maradns_mararctemplate }}"
+    dest: /etc/maradns/mararc
+    owner: root
+    group: root
+    mode: 0644
+  notify: maradns restart
+
+- name: Install Maradns-Zoneserver
+  apt: name=maradns update_cache="yes" state=latest
+  when: maradns_zoneserver != False
+
+- name: Create Zonefiles
+  template: 
+    src: "{{ item.zone_template | default('zonefile.j2') }}"
+    dest: "/etc/maradns/{{ item.name }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items: '{{ maradns_zones }}'
+  notify: maradns restart
