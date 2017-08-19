@@ -134,6 +134,10 @@ _sip._udp.%	SRV	0 0 5060 sip.%
 
 ```
 
+### DNS-Postfix(.%)
+
+Please note, that for some variables(like 'domain' of the A/FQDN4/PTR-Record) the dns-postfix(.%) is automatically set..
+
 # Licence
 
 GPL
