@@ -79,4 +79,4 @@ GPL
 
 # Author information
 
-This role was created in 2017 by (Wolfgang Hotwagner)[https://tech.feedyourhead.at]
+This role was created in 2017 by [Wolfgang Hotwagner](https://tech.feedyourhead.at)
