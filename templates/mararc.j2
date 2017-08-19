@@ -18,7 +18,7 @@ csv{{maradns_csv_version}} = {}
 # csv1["example.com."] = "db.example.com"
 {% if maradns_zones is defined %}
 {% for zone in maradns_zones %}
-{% if zone.enabled != False %}
+{% if zone.enabled is defined and zone.enabled != False %}
 csv{{maradns_csv_version}}["{{ zone.name }}."] = "{{ zone.name }}"
 {% endif %}
 {% endfor %}
