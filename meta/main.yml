@@ -1,0 +1,21 @@
+---
+
+dependencies: []
+
+galaxy_info:
+
+  author:              Wolfgang Hotwagner
+  description: >
+    MaraDNS-Role
+  license: MIT
+  min_ansible_version: 2.1.0
+  platforms:
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+  categories:
+    - system
+    - networking
+    - debian
+    - ubuntu
