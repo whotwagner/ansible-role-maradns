@@ -19,3 +19,5 @@ galaxy_info:
     - networking
     - debian
     - ubuntu
+    - maradns
+    - dns
