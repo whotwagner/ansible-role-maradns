@@ -52,6 +52,8 @@
 {% for fqdn4 in item.fqdn4 %}
 {% if fqdn4.domain is defined %}
 {{fqdn4.domain}}.%	FQDN4	{{fqdn4.ip}} 
+{% else %}
+%   FQDN4   {{fqdn4.ip}}
 {% endif %}
 {% endfor %}
 {% endif %}
