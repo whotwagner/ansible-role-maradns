@@ -1,6 +1,10 @@
 - include: Debian.yml
   when: ansible_os_family == "Debian"
 
+- include_tasks: systemd_resolved.yml
+  when:
+    - maradns_systemd_resolved_disable
+
 - name: Configure mararc
   template:
     src: "{{ maradns_mararctemplate }}"

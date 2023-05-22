@@ -1,0 +1,49 @@
+---
+- name: Systemd_resolved | Checking If systemd-resolved Service Is Present
+  ansible.builtin.command: systemctl status systemd-resolved.service
+  register: _maradns_systemd_resolved_check
+  become: true
+  changed_when: false
+  failed_when: false
+
+- name: Systemd_resolved | Disabling and Stopping systemd-resolved
+  ansible.builtin.service:
+    name: systemd-resolved
+    state: stopped
+    enabled: false
+  become: true
+  register: _maradns_systemd_resolved_disabled
+  notify: maradns restart
+  when: _maradns_systemd_resolved_check['rc'] == 0
+
+- name: Systemd_resolved | Checking If /etc/resolv.conf Exists
+  ansible.builtin.stat:
+    path: /etc/resolv.conf
+  register: _maradns_resolv_conf
+
+- name: Systemd_resolved | Removing Existing /etc/resolv.conf If symlink
+  ansible.builtin.file:
+    path: /etc/resolv.conf
+    state: absent
+  become: true
+  tags:
+    - skip_ansible_lint
+  register: _maradns_resolv_conf_removed
+  when:
+    - _maradns_systemd_resolved_disabled['changed']
+    - _maradns_resolv_conf['stat']['islnk']
+
+- name: Systemd_resolved | Creating /etc/resolv.conf
+  ansible.builtin.copy:
+    content: |
+      nameserver {{maradns_ns_replacement}}
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    mode: o=rw,g=r,o=r
+  become: true
+  notify: maradns restart
+  tags:
+    - skip_ansible_lint
+  when:
+    - _maradns_resolv_conf_removed['changed']

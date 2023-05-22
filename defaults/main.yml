@@ -10,3 +10,5 @@ maradns_default_refresh: 3600
 maradns_default_retry: 1800
 maradns_default_expire: 604800
 maradns_default_ttl: 600
+maradns_ns_replacement: 8.8.8.8
+maradns_systemd_resolved_disable: "{{ ansible_service_mgr == 'systemd' }}"
