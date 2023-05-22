@@ -26,7 +26,7 @@ csv{{maradns_csv_version}}["{{ zone.name }}."] = "{{ zone.name }}"
 
 # The address this DNS server runs on.  If you want to bind 
 # to all addresses a given machine has, use "0.0.0.0".
-bind_address = "{{ maradns_bind_address }}"
+ipv4_bind_addresses = "{{ maradns_bind_address }}"
 # The directory with all of the zone files
 chroot_dir = "/etc/maradns"
 # The numeric UID MaraDNS will run as

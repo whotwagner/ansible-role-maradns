@@ -1,6 +1,6 @@
 maradns_zoneserver: False
 maradns_mararctemplate: mararc.j2
-maradns_bind_address: 127.0.0.1
+maradns_bind_address: 0.0.0.0
 maradns_verbose_level: 1
 maradns_zone_transfer_acl: False
 maradns_recursive_acl: False
